@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const { Pool } = require("pg");
 const { generarReporte } = require("./middlewares/generarReporte");
+const dotenv = require("dotenv");
 
 const port = process.env.PORT ?? 3000;
 
@@ -12,7 +13,7 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "joyas",
-  password: "Sebastiaan12.",
+  password: process.env.PASSWORD,
   port: 5432,
 });
 app.get("/joyas", generarReporte, async (req, res) => {
